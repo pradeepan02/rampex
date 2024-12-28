@@ -1,6 +1,19 @@
 
 //assignment operator
 let a=5;
+console.log(a);
+a+=5;
+console.log(a);
+a-=2;
+console.log(a);
+a*=2;
+console.log(a);
+a/=1;
+console.log(a);
+a%=2;
+console.log(a);
+
+
 let b=6;
 //arithmetic operator
 console.log("Add",a+b);
