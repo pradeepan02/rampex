@@ -75,3 +75,19 @@ console.log(f);
 
 
 
+//for each
+arr=[1,2,3,4,5]
+arr.forEach((e,i)=> {
+    console.log(e,i);
+});
+//object with for each
+// for(key of obj){
+//     ^
+// TypeError: obj is not iterable
+// for({key,val} of obj){
+//                  ^
+// TypeError: obj is not iterable
+obj={"a":1,"b":2}
+for(key in obj){
+    console.log(key,obj[key]);
+}
