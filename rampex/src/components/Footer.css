@@ -1,0 +1,21 @@
+footer {
+  margin-top: 820px;
+  align-items: center;
+  text-align: center;
+  background-color: #98e691;
+  border: 2px solid;
+  height: 120px;
+  border-radius: 10px;
+}
+form {
+  padding: 4px;
+  margin-right: 500px;
+}
+.im{
+    height: 40px;
+    background-color:#98e691;
+    text-align: center;
+    margin-top: -100px;
+    margin-bottom: 65px;
+    margin-left: 20px;
+}

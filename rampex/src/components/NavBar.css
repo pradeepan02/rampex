@@ -1,0 +1,30 @@
+ul {
+  padding: 2px;
+  display: flex;
+  margin: 2px;
+  text-decoration: none;
+  list-style-type: none;
+  justify-content: space-evenly;
+  border: 2px solid;
+  height: 30px;
+  background-color: #98e691;
+  border-radius: 10px;
+}
+.full {
+  font-style: oblique;
+  font-weight: 1000;
+  margin: 0px;
+  font-size: 31px;
+}
+.link {
+    text-decoration: none;
+    color:black;
+    margin: 5px;
+    display:inline-block;
+}
+.link:hover {
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  cursor: pointer;
+  
+}
