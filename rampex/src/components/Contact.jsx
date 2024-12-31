@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+//useeffect example
 const Contact = (props) => {
   const [track, settrack] = useState(false);
   console.log(track);

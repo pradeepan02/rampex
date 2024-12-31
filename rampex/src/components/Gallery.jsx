@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+///usestate example
 const Gallery = (props) => {
   const [num, setnum] = useState(0);
   console.log(num)

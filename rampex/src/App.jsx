@@ -4,8 +4,11 @@ import Gallery from "./components/Gallery";
 import Contact from "./components/Contact";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import Apicall from "./components/apicall";
+import Useref from "./components/Useref";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import Examusecontext from "./components/contextxomponents/Examusecontext";
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/axio" element={<Apicall />} />
+          <Route path="/ref" element={<Useref />} />
+          <Route path="/con" element={<Examusecontext/>}/>
         </Routes>
       </BrowserRouter>
       <Footer />
