@@ -9,6 +9,7 @@ import Useref from "./components/Useref";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Examusecontext from "./components/contextxomponents/Examusecontext";
+import Usememo from "./components/Usememo";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/axio" element={<Apicall />} />
           <Route path="/ref" element={<Useref />} />
-          <Route path="/con" element={<Examusecontext/>}/>
+          <Route path="/con" element={<Examusecontext />} />
+          <Route path="/memo" element={<Usememo />} />
         </Routes>
       </BrowserRouter>
       <Footer />
