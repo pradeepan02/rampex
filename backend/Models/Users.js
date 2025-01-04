@@ -1,7 +1,6 @@
 var mdb = require("mongoose");
 var userschema = mdb.Schema({
-  FirstName: String,
-  LastName: String,
+  Name: String,
   Email: String,
   Password: String,
 });

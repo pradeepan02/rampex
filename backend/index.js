@@ -4,8 +4,8 @@ var path = require("path");
 var mdb = require("mongoose");
 const usermodel = require("./Models/Users");
 const contactmodel = require("./Models/Contact");
-
-
+const cors = require("cors")
+app.use(cors())
 app.use(express.json());
 mdb
   .connect("mongodb://localhost:27017/")
@@ -17,25 +17,6 @@ mdb
   });
 
 const PORT = 3001;
-
-app.post("/signup", (req, res) => {
-  var { FirstName, LastName, Email, Password } = req.body;
-  console.log(FirstName, LastName, Email, Password);
-  try {
-    var newuser = new usermodel({
-      FirstName: FirstName,
-      LastName: LastName,
-      Email: Email,
-      Password: Password,
-    });
-    newuser.save();
-    res.status(200).send("user added succesfully");
-    console.log("user added succesfully");
-  } catch (error) {
-    console.log(error);
-  }
-});
-
 app.post("/contact", (req, res) => {
   var { Username, Email, Messages } = req.body;
   try {
@@ -51,15 +32,56 @@ app.post("/contact", (req, res) => {
   }
 });
 
-app.get("/signin", async (req, res) => {
+// app.get("/signin", async (req, res) => {
+//   try {
+//     const a = await usermodel.find();
+//     console.log(a)
+//     res.json(a)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// })
+app.post("/signup", (req, res) => {
+  // var { FirstName, LastName, Email, Password } = req.body;
+
   try {
-    const a = await usermodel.find();
-    console.log(a)
-    res.json(a)
+
+    var newuser = new usermodel(req.body)
+    // var newuser = new usermodel({
+    //   FirstName: FirstName,
+    //   LastName: LastName,
+    //   Email: Email,
+    //   Password: Password,
+    // });
+    if (newuser.save()) {
+      res.json({ message: "Signedup Successful", issignup: true });
+    }
+    else {
+      res.json({ message: "Signedup fail", issignup: false });
+    }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
+});
+
+app.post("/signin", async (req, res) => {
+  var { Email, Password } = req.body;
+  try {
+    var existuser = await usermodel.findOne({ Email: Email });
+    
+    if (existuser) { // Check if the array is not empty
+      if (existuser.Password === Password) { // Access the first element of the array
+        res.json({ message: "Login Successful", isloggedin: true });
+      } else {
+        res.json({ message: "Invalid Credentials", isloggedin: false });
+      }
+    } else {
+      res.json({ message: "Login Failed", isloggedin: false });
+    }
+  } catch (error) {
+    console.log("Login Failed");
+  }
+});
 
 
 // app.get("/", (req, res) => {

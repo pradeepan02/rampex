@@ -10,7 +10,7 @@ const Examusecontext = (props) => {
     <div>
       <ExamContext.Provider value={{ cgpa: 8.54 }}>
         <p>Exam</p>
-        <Component2/>
+        <Component2 />
       </ExamContext.Provider>
     </div>
   );
