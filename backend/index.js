@@ -4,11 +4,13 @@ var path = require("path");
 var mdb = require("mongoose");
 const usermodel = require("./Models/Users");
 const contactmodel = require("./Models/Contact");
-const cors = require("cors")
-app.use(cors())
+const cors = require("cors");
+const env = require("dotenv");
+env.config();
+app.use(cors());
 app.use(express.json());
 mdb
-  .connect("mongodb://localhost:27017/")
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Mongodb Connected");
   })
@@ -45,8 +47,7 @@ app.post("/signup", (req, res) => {
   // var { FirstName, LastName, Email, Password } = req.body;
 
   try {
-
-    var newuser = new usermodel(req.body)
+    var newuser = new usermodel(req.body);
     // var newuser = new usermodel({
     //   FirstName: FirstName,
     //   LastName: LastName,
@@ -55,8 +56,8 @@ app.post("/signup", (req, res) => {
     // });
     if (newuser.save()) {
       res.json({ message: "Signedup Successful", issignup: true });
-    }
-    else {
+      console.log("user added");
+    } else {
       res.json({ message: "Signedup fail", issignup: false });
     }
   } catch (error) {
@@ -68,9 +69,11 @@ app.post("/signin", async (req, res) => {
   var { Email, Password } = req.body;
   try {
     var existuser = await usermodel.findOne({ Email: Email });
-    
-    if (existuser) { // Check if the array is not empty
-      if (existuser.Password === Password) { // Access the first element of the array
+
+    if (existuser) {
+      // Check if the array is not empty
+      if (existuser.Password === Password) {
+        // Access the first element of the array
         res.json({ message: "Login Successful", isloggedin: true });
       } else {
         res.json({ message: "Invalid Credentials", isloggedin: false });
@@ -82,7 +85,6 @@ app.post("/signin", async (req, res) => {
     console.log("Login Failed");
   }
 });
-
 
 // app.get("/", (req, res) => {
 //   res.send(`hello`);
