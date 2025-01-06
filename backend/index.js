@@ -18,7 +18,7 @@ mdb
     console.log("Mongodb Not Connected");
   });
 
-const PORT = 3001;
+const PORT = process.env.PORT||3001;
 app.post("/contact", (req, res) => {
   var { Username, Email, Messages } = req.body;
   try {
