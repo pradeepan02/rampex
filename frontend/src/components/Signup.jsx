@@ -13,7 +13,7 @@ const Signup = () => {
   const signingup = async (event) => {
     event.preventDefault();
     try {
-      const req = await axios.post("http://localhost:3001/signup", {
+      const req = await axios.post("https://rampex-i4ms.onrender.com/signup", {
         Name: name,
         Email: email,
         Password: pass,
