@@ -11,7 +11,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Examusecontext from "./components/contextxomponents/Examusecontext";
 import Usememo from "./components/Usememo";
-import Signin from "./components/signin";
+import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import { AuthProvider, AuthContext } from "./components/AuthContext";
 
