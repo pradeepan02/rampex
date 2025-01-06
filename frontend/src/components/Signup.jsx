@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { Authcontext } from "./Authprovider";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
 const Signup = () => {
-  // const islog= useContext(Authcontext);
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [pass, setpass] = useState("");
+  const { setIsAuthenticated } = useContext(AuthContext);
   const nav = useNavigate();
 
   const signingup = async (event) => {
@@ -20,8 +20,8 @@ const Signup = () => {
       });
 
       if (req.data.issignup) {
-        // islog(true);
         nav("/home");
+        setIsAuthenticated(true);
       } else {
         window.alert("Signup failed");
       }

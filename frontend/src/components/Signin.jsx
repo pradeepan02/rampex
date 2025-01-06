@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { Authcontext } from "./Authprovider";
+import { AuthContext } from "./AuthContext";
 
 const Signin = () => {
-  // const islog = useContext(Authcontext);
-  const [email, setemail] = useState("");
-  const [pass, setpass] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { setIsAuthenticated } = useContext(AuthContext);
   const nav = useNavigate();
 
   const signingin = async (event) => {
@@ -14,12 +14,12 @@ const Signin = () => {
     try {
       const req = await axios.post("http://localhost:3001/signin", {
         Email: email,
-        Password: pass,
+        Password: password,
       });
 
       if (req.data.isloggedin) {
-        // islog(true);
         window.alert("You're Signed in");
+        setIsAuthenticated(true); // Update authentication state
         nav("/home");
       } else {
         window.alert(req.data.message);
@@ -32,19 +32,19 @@ const Signin = () => {
   return (
     <div>
       <form onSubmit={signingin}>
-        <label htmlFor="Email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           value={email}
-          onChange={(e) => setemail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <br />
-        <label htmlFor="Password">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
-          value={pass}
-          onChange={(e) => setpass(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <br />

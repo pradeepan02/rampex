@@ -1,3 +1,4 @@
+import React from "react";
 import Home from "./components/Home";
 import About from "./components/About";
 import Gallery from "./components/Gallery";
@@ -12,30 +13,31 @@ import Examusecontext from "./components/contextxomponents/Examusecontext";
 import Usememo from "./components/Usememo";
 import Signin from "./components/signin";
 import Signup from "./components/Signup";
-// import Authprovider from "./components/Authprovider";
+import { AuthProvider, AuthContext } from "./components/AuthContext";
 
-function App() {  
+function App() {
+  const { isAuthenticated } = React.useContext(AuthContext);
+
   return (
-    <div>
-      {/* <Authprovider> */}
-        <BrowserRouter>
-          <NavBar />
-          <Routes>
-            <Route path="/home" element={<Home data="hello" />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/axio" element={<Apicall />} />
-            <Route path="/ref" element={<Useref />} />
-            <Route path="/con" element={<Examusecontext />} />
-            <Route path="/memo" element={<Usememo />} />
-            <Route path="/" element={<Signin />} />
-            <Route path="/signup" element={<Signup />} />
-          </Routes>
-        </BrowserRouter>
-        <Footer />
-      {/* </Authprovider> */}
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/home" element={<Home data="hello" />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/axio" element={<Apicall />} />
+          <Route path="/ref" element={<Useref />} />
+          <Route path="/con" element={<Examusecontext />} />
+          <Route path="/memo" element={<Usememo />} />
+        </Routes>
+      </BrowserRouter>
+      <Footer />
+    </AuthProvider>
   );
 }
 
